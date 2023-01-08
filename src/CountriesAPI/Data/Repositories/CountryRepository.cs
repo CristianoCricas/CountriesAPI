@@ -1,14 +1,12 @@
-﻿using CountriesAPI.Data;
-using CountriesAPI.Domain.Entities;
-using CountriesAPI.Enums;
-using CountriesAPI.Repositories.Interfaces;
+﻿using CountriesAPI.Domain.Entities;
+using CountriesAPI.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace CountriesAPI.Repositories
+namespace CountriesAPI.Data.Repositories
 {
     public class CountryRepository : ICountryRepository
     {
-        private readonly DbCountriesContext _context;
+        protected readonly DbCountriesContext _context;
 
         public CountryRepository(DbCountriesContext context)
         {
@@ -31,9 +29,8 @@ namespace CountriesAPI.Repositories
         public async Task<bool> InsertOrUpdate(CountryEntity newCountry)
         {
             bool result = false;
-            DataBaseAction dbAction = newCountry.ValidateDefaultValues();
 
-            if (dbAction == DataBaseAction.Insert) 
+            if (newCountry.IsInserting())
             {
                 await _context.Countries.AddAsync(newCountry);
                 result = true;
@@ -48,8 +45,8 @@ namespace CountriesAPI.Repositories
                     result = true;
                 }
             }
-
             await _context.SaveChangesAsync();
+
             return result;
         }
 

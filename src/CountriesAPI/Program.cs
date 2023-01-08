@@ -1,6 +1,6 @@
 using CountriesAPI.Data;
-using CountriesAPI.Repositories;
-using CountriesAPI.Repositories.Interfaces;
+using CountriesAPI.Data.Repositories;
+using CountriesAPI.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CountriesAPI

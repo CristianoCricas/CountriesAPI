@@ -1,7 +1,6 @@
 ﻿using CountriesAPI.Domain.Entities;
-using System.Diagnostics.Metrics;
 
-namespace CountriesAPI.Repositories.Interfaces
+namespace CountriesAPI.Domain.Interfaces
 {
     public interface ICountryRepository
     {

@@ -1,8 +1,4 @@
-using CountriesAPI.Controllers;
 using CountriesAPI.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 namespace CountriesAPI.Test
 {
@@ -17,7 +13,6 @@ namespace CountriesAPI.Test
                 Alpha2Code = "TT",
                 Alpha3Code = "TST",
                 NumericCode = 123,
-                IsoCode = "ISO ??",
                 Independent = true
             };
 

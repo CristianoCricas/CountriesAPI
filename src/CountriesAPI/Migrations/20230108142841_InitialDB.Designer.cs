@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CountriesAPI.Migrations
 {
     [DbContext(typeof(DbCountriesContext))]
-    [Migration("20230108033351_InitialDB")]
+    [Migration("20230108142841_InitialDB")]
     partial class InitialDB
     {
         /// <inheritdoc />
@@ -47,11 +47,6 @@ namespace CountriesAPI.Migrations
 
                     b.Property<bool>("Independent")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("IsoCode")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("Name")
                         .IsRequired()

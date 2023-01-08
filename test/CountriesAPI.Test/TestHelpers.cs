@@ -10,8 +10,6 @@ namespace CountriesAPI.Test
             if (entity == null)
                 throw new Exception("entity cannot be NULL to validade");
 
-            entity.ValidateDefaultValues();
-
             var context = new ValidationContext(entity, null, null);
             var result = new List<ValidationResult>();
             Validator.TryValidateObject(entity, context, result, true);

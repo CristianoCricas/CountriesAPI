@@ -1,7 +1,4 @@
-﻿using CountriesAPI.Enums;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
-using System.Xml.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CountriesAPI.Domain.Entities
 {
@@ -25,22 +22,24 @@ namespace CountriesAPI.Domain.Entities
         [Required]
         public int NumericCode { get; set; }
 
-        public string IsoCode { get; set; } = string.Empty;
-
         [Required]
         public bool Independent { get; set; }
+
+
+        public string IsoCode
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Alpha2Code))
+                    return $"ISO 3166-2:{Alpha2Code}";
+
+                return string.Empty;
+            }
+        }
         #endregion
 
 
         #region ACTIONS
-        public override DataBaseAction ValidateDefaultValues()
-        {
-            if (!string.IsNullOrEmpty(Alpha2Code))
-                IsoCode = $"ISO 3166-2:{Alpha2Code}";
-
-            return base.ValidateDefaultValues();
-        }
-
         public override void CopyFrom(EntityBase newEntity)
         {
             var newCountry = (CountryEntity)newEntity;
@@ -50,7 +49,6 @@ namespace CountriesAPI.Domain.Entities
             Alpha2Code = newCountry.Alpha2Code;
             Alpha3Code = newCountry.Alpha3Code;
             NumericCode = newCountry.NumericCode;
-            IsoCode = newCountry.IsoCode;
             Independent = newCountry.Independent;
         }
         #endregion

@@ -31,12 +31,14 @@ namespace CountriesAPI.Data.Map
             builder.Property(x => x.NumericCode)
                 .IsRequired();
 
-            builder.Property(x => x.IsoCode)
-                .HasMaxLength(20)
-                .IsRequired();
-
             builder.Property(x => x.Independent)
                 .IsRequired();
+
+            #region IGNORED FIELDS
+            builder.Ignore(x => x.IsoCode);
+
+
+            #endregion
         }
     }
 }

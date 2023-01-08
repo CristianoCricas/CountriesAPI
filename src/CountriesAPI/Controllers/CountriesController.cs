@@ -1,4 +1,4 @@
-﻿using CountriesAPI.Repositories.Interfaces;
+﻿using CountriesAPI.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using CountriesAPI.Domain.Entities;
 

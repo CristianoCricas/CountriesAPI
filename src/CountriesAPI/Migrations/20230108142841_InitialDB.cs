@@ -20,7 +20,6 @@ namespace CountriesAPI.Migrations
                     Alpha2Code = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false),
                     Alpha3Code = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
                     NumericCode = table.Column<int>(type: "integer", nullable: false),
-                    IsoCode = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Independent = table.Column<bool>(type: "boolean", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },

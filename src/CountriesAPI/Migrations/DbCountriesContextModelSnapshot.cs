@@ -45,11 +45,6 @@ namespace CountriesAPI.Migrations
                     b.Property<bool>("Independent")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("IsoCode")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)

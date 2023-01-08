@@ -1,18 +1,45 @@
 services:
+  #countriesapi:
+  #  image: ${DOCKER_REGISTRY-}countriesapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/CountriesAPI/Dockerfile
+  #  ports:
+  #    - 7080:80
+  #    - 7443:443
+  #  networks:
+  #    - appnetwork
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - ASPNETCORE_URLS=https://+7443:443;http://+7080:80
+  #    - ASPNETCORE_Kestrel__Certificates__Default__Password=cricas123
+  #    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/CountriesAPIcert.pfx
+  #  volumes:
+  #    - ./src:/https:ro
 
   db:
     image: postgres
     restart: always
-    container_name: countries_db
+    container_name: db
     environment:
-      POSTGRES_DB: countries_db    
+      POSTGRES_DB: countries_db
       POSTGRES_PASSWORD: Cric@s
-    restart: always
     ports:
-      - 5432:5432         
+      - 5432:5432
+    networks:
+      - appnetwork
+    volumes:
+      - ./docker/postgresql/db-data/:/var/lib/postgresql/data/
+      - ./docker/postgresql/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
 
   adminer:
+    depends_on: [db]
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - appnetwork
+
+networks:
+  appnetwork:
