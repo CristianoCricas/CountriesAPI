@@ -1,0 +1,18 @@
+services:
+
+  db:
+    image: postgres
+    restart: always
+    container_name: countries_db
+    environment:
+      POSTGRES_DB: countries_db    
+      POSTGRES_PASSWORD: Cric@s
+    restart: always
+    ports:
+      - 5432:5432         
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
