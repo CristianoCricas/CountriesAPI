@@ -10,11 +10,19 @@
 
 
         #region ACTIONS
+        /// <summary>
+        /// Copy information from an Entity
+        /// </summary>
+        /// <param name="newEntity"></param>
         public virtual void CopyFrom(EntityBase newEntity)
         {
             DateUpdated = newEntity.DateUpdated;
         }
 
+        /// <summary>
+        /// Return if this Entity is Inserting (when ID is empty):
+        /// </summary>
+        /// <param name="newEntity"></param>
         public bool IsInserting()
         {
 

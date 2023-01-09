@@ -40,6 +40,7 @@ namespace CountriesAPI.Domain.Entities
 
 
         #region ACTIONS
+        /// <inheritdoc />
         public override void CopyFrom(EntityBase newEntity)
         {
             var newCountry = (CountryEntity)newEntity;

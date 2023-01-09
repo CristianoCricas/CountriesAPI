@@ -13,6 +13,7 @@ namespace CountriesAPI.Data.Repositories
             _context = context;
         }
 
+        /// <inheritdoc />
         public async Task<bool> Delete(Guid id)
         {
             var delCountry = await SelectById(id);
@@ -26,6 +27,7 @@ namespace CountriesAPI.Data.Repositories
             return false;
         }
 
+        /// <inheritdoc />
         public async Task<bool> InsertOrUpdate(CountryEntity newCountry)
         {
             bool result = false;
@@ -50,11 +52,13 @@ namespace CountriesAPI.Data.Repositories
             return result;
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<CountryEntity>> ListAll()
         {
             return await _context.Countries.ToListAsync();
         }
 
+        /// <inheritdoc />
         public async Task<CountryEntity?> SelectById(Guid id)
         {
             var country = await _context.Countries.FindAsync(id);

@@ -16,6 +16,10 @@ namespace CountriesAPI.Controllers
         }
 
 
+        /// <summary>
+        /// Default API exposed action to Select ALL Countries on DataBase by it's ID
+        /// </summary>
+        /// <returns>JSON with ALL Countries on DataBase</returns>
         [HttpGet]
         public async Task<IActionResult> ListAllCountries()
         {
@@ -25,6 +29,11 @@ namespace CountriesAPI.Controllers
         }
 
 
+        /// <summary>
+        /// Exposed API action to Select one Country on DataBase by it's ID
+        /// </summary>
+        /// <param name="id">ID of the Country that will be selected</param>
+        /// <returns>JSON with Country on DataBase</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> SelectCountryById(Guid id)
         {
@@ -37,6 +46,11 @@ namespace CountriesAPI.Controllers
         }
 
 
+        /// <summary>
+        /// API exposed action to Register a New Country on DataBase
+        /// </summary>
+        /// <param name="newCountry">JSON with Country informatios (REQUIRED: Name, Alpha2Code, Alpha3Code, NumericCode, Independet )</param>
+        /// <returns>JSON with new Country registered and it's ID on DataBase</returns>
         [HttpPost]
         public async Task<IActionResult> RegisterCountry([FromBody] CountryEntity newCountry)
         {
@@ -49,6 +63,11 @@ namespace CountriesAPI.Controllers
         }
 
 
+        /// <summary>
+        /// API exposed action to Update a Country on DataBase
+        /// </summary>
+        /// <param name="newCountry">JSON with Country informatios (REQUIRED: ID, Name, Alpha2Code, Alpha3Code, NumericCode, Independet )</param>
+        /// <returns>204 No Content</returns>
         [HttpPut]
         public async Task<IActionResult> UpdateCountry([FromBody] CountryEntity edtCountry)
         {
@@ -62,6 +81,11 @@ namespace CountriesAPI.Controllers
         }
 
 
+        /// <summary>
+        /// API exposed action to Delete a Country on DataBase
+        /// </summary>
+        /// <param name="id">ID of the Country that will be deleted</param>
+        /// <returns>204 No Content</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCountry(Guid id)
         {

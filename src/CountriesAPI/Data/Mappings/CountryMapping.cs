@@ -6,6 +6,10 @@ namespace CountriesAPI.Data.Map
 {
     public class CountryMapping : IEntityTypeConfiguration<CountryEntity>
     {
+        /// <summary>
+        /// Mapping the CountryEntity to EntityFramework
+        /// </summary>
+        /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<CountryEntity> builder)
         {
             builder.ToTable("Countries");
