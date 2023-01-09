@@ -32,7 +32,8 @@ namespace CountriesAPI
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            //This webAPI UseSwagger for Production to be accessed on Docker Container
+            if (app.Environment.IsDevelopment() || app.Environment.IsProduction()) 
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
