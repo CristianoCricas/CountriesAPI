@@ -20,7 +20,7 @@ namespace CountriesAPI.Controllers
         /// Default API exposed action to Select ALL Countries on DataBase
         /// </summary>
         /// <returns>JSON with ALL Countries on DataBase</returns>
-        [HttpGet]
+        [HttpGet] //HTTP GET - Get all
         public async Task<IActionResult> ListAllCountries()
         {
             IEnumerable<CountryEntity> countries = await _countryRepository.ListAll();
@@ -46,7 +46,7 @@ namespace CountriesAPI.Controllers
         /// </summary>
         /// <param name="id">ID of the Country that will be selected</param>
         /// <returns>JSON with Country on DataBase</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] //HTTP GET {id} - Get for given Id
         public async Task<IActionResult> SelectCountryById(Guid id)
         {
             CountryEntity? country = await _countryRepository.SelectById(id);
@@ -62,7 +62,7 @@ namespace CountriesAPI.Controllers
         /// </summary>
         /// <param name="newCountry">JSON with Country informations (REQUIRED: Name, Alpha2Code, Alpha3Code, NumericCode, Independet )</param>
         /// <returns>JSON with new Country registered and it's ID on DataBase</returns>
-        [HttpPost]
+        [HttpPost] //HTTP POST - Create new
         public async Task<IActionResult> RegisterCountry([FromBody] CountryEntity newCountry)
         {
             newCountry.Id = Guid.Empty; //clear Guid to Insert a new Country
@@ -77,11 +77,14 @@ namespace CountriesAPI.Controllers
         /// <summary>
         /// API exposed action to Update a Country on DataBase
         /// </summary>
-        /// <param name="edtCountry">JSON with Country informations (REQUIRED: ID, Name, Alpha2Code, Alpha3Code, NumericCode, Independet )</param>
+        /// <param name="id">ID of the Country that will be updated</param>
+        /// <param name="edtCountry">JSON with Country informations (REQUIRED: Name, Alpha2Code, Alpha3Code, NumericCode, Independet )</param>
         /// <returns>204 No Content</returns>
-        [HttpPut]
-        public async Task<IActionResult> UpdateCountry([FromBody] CountryEntity edtCountry)
+        [HttpPut("{id}")] //HTTP PUT {id} - Update for given Id
+        public async Task<IActionResult> UpdateCountry(Guid id, [FromBody] CountryEntity edtCountry)
         {
+            edtCountry.Id = id;
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState); //400 Bad Request
 
@@ -97,7 +100,7 @@ namespace CountriesAPI.Controllers
         /// </summary>
         /// <param name="id">ID of the Country that will be deleted</param>
         /// <returns>204 No Content</returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] //HTTP DELETE {id} - Delete for given Id
         public async Task<IActionResult> DeleteCountry(Guid id)
         {
             bool deleteOK = await _countryRepository.Delete(id);
@@ -113,7 +116,7 @@ namespace CountriesAPI.Controllers
         /// </summary>
         /// <param name="countryId">Country ID of the  Subdivisiosn </param>
         /// <returns>JSON with ALL Subdivisions of a Countries on DataBase</returns>
-        [HttpGet("{countryId}/subdivisions")]
+        [HttpGet("{countryId}/subdivisions")] //HTTP GET - Get all
         public async Task<IActionResult> ListAllSubdivisions([FromRoute] Guid countryId)
         {
             IEnumerable<CountrySubdivisionEntity> subdivisions = await _countryRepository.ListAllSubdivisions(countryId);
@@ -144,7 +147,7 @@ namespace CountriesAPI.Controllers
         /// <param name="countryId">Country ID of the  Subdivisiosn </param>
         /// <param name="subId">ID of the Subdivision of Country that will be selected</param>
         /// <returns>JSON with Country Subdivision on DataBase</returns>
-        [HttpGet("{countryId}/subdivisions/{subId}")]
+        [HttpGet("{countryId}/subdivisions/{subId}")] //HTTP GET {subId} - Get for given Id
         public async Task<IActionResult> SelectSubdivisionById([FromRoute] Guid countryId, Guid subId)
         {
             CountrySubdivisionEntity? subdivision = await _countryRepository.SelectSubdivisionById(countryId, subId);
@@ -161,7 +164,7 @@ namespace CountriesAPI.Controllers
         /// <param name="countryId">Country ID of the new Subdivision</param>
         /// <param name="newSubdivision">JSON with Subdivision informations (REQUIRED: Name, Category, SubCode )</param>
         /// <returns>JSON with new Subdivision registered and it's ID on DataBase</returns>
-        [HttpPost("{countryId}/subdivisions")]
+        [HttpPost("{countryId}/subdivisions")] //HTTP POST - Create new
         public async Task<IActionResult> RegisterCountrySubdivision([FromRoute] Guid countryId, [FromBody] CountrySubdivisionEntity newSubdivision)
         {
             newSubdivision.Id = Guid.Empty; //clear Guid to Insert a new Subdivision
@@ -181,11 +184,13 @@ namespace CountriesAPI.Controllers
         /// API exposed action to Update a Country Subdivision on DataBase
         /// </summary>
         /// <param name="countryId">Country ID of the Subdivision that will be updated</param>
-        /// <param name="edtSubdivision">JSON with Subdivision informations (REQUIRED: ID, Name, Category, SubCode )</param>
+        /// <param name="subId">ID of the Subdivision of Country that will be updated</param>
+        /// <param name="edtSubdivision">JSON with Subdivision informations (REQUIRED: Name, Category, SubCode )</param>
         /// <returns>204 No Content</returns>
-        [HttpPut("{countryId}/subdivisions")]
-        public async Task<IActionResult> UpdateSubdivision([FromRoute] Guid countryId, [FromBody] CountrySubdivisionEntity edtSubdivision)
+        [HttpPut("{countryId}/subdivisions/{id}")] //HTTP PUT {subId} - Update for given Id
+        public async Task<IActionResult> UpdateSubdivision([FromRoute] Guid countryId, Guid subId, [FromBody] CountrySubdivisionEntity edtSubdivision)
         {
+            edtSubdivision.Id = subId;
             edtSubdivision.CountryId = countryId;
 
             if (!ModelState.IsValid)
@@ -204,7 +209,7 @@ namespace CountriesAPI.Controllers
         /// <param name="countryId">Country ID of the  Subdivisiosn </param>
         /// <param name="subId">ID of the Subdivision of Country that will be deleted</param>
         /// <returns>204 No Content</returns>
-        [HttpDelete("{countryId}/subdivisions/{subId}")]
+        [HttpDelete("{countryId}/subdivisions/{subId}")] //HTTP DELETE {subId} - Delete for given Id
         public async Task<IActionResult> DeleteCountry([FromRoute] Guid countryId, Guid subId)
         {
             bool deleteOK = await _countryRepository.DeleteSubdivision(countryId, subId);
