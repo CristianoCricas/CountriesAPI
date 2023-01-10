@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA9E03A3-3539-4422-9BCD-5BB1C06AEAF1}"
 	ProjectSection(SolutionItems) = preProject
 		InitializeDevCertificate.ps1 = InitializeDevCertificate.ps1
+		.env = .env
 	EndProjectSection
 EndProject
 Global

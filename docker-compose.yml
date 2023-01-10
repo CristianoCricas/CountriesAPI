@@ -9,8 +9,7 @@ services:
       context: .
       dockerfile: src/CountriesAPI/Dockerfile
     ports:
-      - 9080:80
-      - 9443:443
+      - ${DOCKER_API_PORT}:443
     networks:
       - appnetwork
     environment:
@@ -31,7 +30,7 @@ services:
       POSTGRES_DB: countries_db
       POSTGRES_PASSWORD: Cric@s
     ports:
-      - 5432:5432
+      - ${DOCKER_POSTGRES_PORT}:5432
     networks:
       - appnetwork
     volumes:
@@ -44,7 +43,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - 10080:8080
+      - ${DOCKER_ADMINER_PORT}:8080
     networks:
       - appnetwork
 
