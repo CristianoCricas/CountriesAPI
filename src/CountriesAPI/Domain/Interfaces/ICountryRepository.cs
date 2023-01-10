@@ -5,16 +5,29 @@ namespace CountriesAPI.Domain.Interfaces
     public interface ICountryRepository
     {
         /// <summary>
-        /// Select ALL Countries on DataBase by it's ID
+        /// Select ALL Countries on DataBase
         /// </summary>
         /// <returns>LIST with ALL Countries on DataBase</returns>
-        Task<IEnumerable<CountryEntity>> ListAll();
+        Task<IEnumerable<CountryEntity>> ListAll(string? name, string? alpha2Code, string? alpha3Code);
 
         /// <summary>
         /// Select ALL SubDivisions of a Country on DataBase by Country ID
         /// </summary>
         /// <returns>LIST with ALL SubDivisions of a Countries on DataBase</returns>
         Task<IEnumerable<CountrySubdivisionEntity>> ListAllSubdivisions(Guid countryId);
+
+
+        /// <summary>
+        /// Select "N" Countries on DataBase by it's IDs
+        /// </summary>
+        /// <returns>LIST "N" Countries on DataBase</returns>
+        Task<IEnumerable<CountryEntity>> SearchCountriesByIds(IEnumerable<Guid> ids);
+
+        /// <summary>
+        /// Select "N" SubDivisions of a Country on DataBase by it's IDs
+        /// </summary>
+        /// <returns>LIST "N" SubDivisions on DataBase</returns>
+        Task<IEnumerable<CountrySubdivisionEntity>> SearchSubdivisionsByIds(Guid countryId, IEnumerable<Guid> subIds);
 
 
         /// <summary>

@@ -21,9 +21,9 @@ namespace CountriesAPI.Controllers
         /// </summary>
         /// <returns>JSON with ALL Countries on DataBase</returns>
         [HttpGet] //HTTP GET - Get all
-        public async Task<IActionResult> ListAllCountries()
+        public async Task<IActionResult> ListAllCountries([FromQuery] string? name, [FromQuery] string? alpha2Code, [FromQuery] string? alpha3Code)
         {
-            IEnumerable<CountryEntity> countries = await _countryRepository.ListAll();
+            IEnumerable<CountryEntity> countries = await _countryRepository.ListAll(name, alpha2Code, alpha3Code);
 
             return Ok(countries); //200 OK
         }
@@ -35,7 +35,7 @@ namespace CountriesAPI.Controllers
         [HttpGet("total")]
         public async Task<IActionResult> TotalCountries()
         {
-            IEnumerable<CountryEntity> countries = await _countryRepository.ListAll();
+            IEnumerable<CountryEntity> countries = await _countryRepository.ListAll(null, null, null);
             var total = countries.Count();
 
             return Ok($"Total obtained countries: {total}"); //200 OK
@@ -55,6 +55,19 @@ namespace CountriesAPI.Controllers
                 return NotFound(); //404 Not Found
 
             return Ok(country); //200 OK
+        }
+
+        /// <summary>
+        /// API exposed action to Select Countries on DataBase by an ID list
+        /// </summary>
+        /// <param name="ids">List IDs of the Country to search</param> 
+        /// <returns>JSON with Countries on DataBase</returns>
+        [HttpPost("search")]
+        public async Task<IActionResult> SearchCountriesById([FromBody] IEnumerable<Guid> ids)
+        {
+            IEnumerable<CountryEntity> countries = await _countryRepository.SearchCountriesByIds(ids);
+
+            return Ok(countries); //200 OK
         }
 
         /// <summary>
@@ -156,6 +169,20 @@ namespace CountriesAPI.Controllers
                 return NotFound(); //404 Not Found
 
             return Ok(subdivision); //200 OK
+        }
+
+        /// <summary>
+        /// API exposed action to Select Countries on DataBase by an ID list
+        /// </summary>
+        /// <param name="countryId">Country ID of the Subdivisiosn </param>
+        /// <param name="subIds">List IDs of the Subdivisions to search</param> 
+        /// <returns>JSON with Countries on DataBase</returns>
+        [HttpPost("{countryId}/subdivisions/search")]
+        public async Task<IActionResult> SearchSubdivisionsById([FromRoute] Guid countryId, [FromBody] IEnumerable<Guid> subIds)
+        {
+            IEnumerable<CountrySubdivisionEntity> subdivisions = await _countryRepository.SearchSubdivisionsByIds(countryId, subIds);
+
+            return Ok(subdivisions); //200 OK
         }
 
         /// <summary>

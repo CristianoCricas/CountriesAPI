@@ -1,5 +1,6 @@
 ﻿using CountriesAPI.Domain.Entities;
 using CountriesAPI.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CountriesAPI.Data.Repositories
@@ -101,15 +102,38 @@ namespace CountriesAPI.Data.Repositories
 
 
         /// <inheritdoc />
-        public async Task<IEnumerable<CountryEntity>> ListAll()
+        public async Task<IEnumerable<CountryEntity>> ListAll(string? name, string? alpha2Code, string? alpha3Code)
         {
-            return await _context.Countries.ToListAsync();
+            //handling possibly null parameters
+            name ??= string.Empty;
+            alpha2Code ??= string.Empty;
+            alpha3Code ??= string.Empty;
+
+
+            return await _context.Countries.Where(
+                    c => c.Name.ToUpper().Contains(name.ToUpper()) //ToUpper: case InSensitive only on NAME
+                    && c.Alpha2Code.Contains(alpha2Code)
+                    && c.Alpha3Code.Contains(alpha3Code))
+                .ToListAsync();
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<CountrySubdivisionEntity>> ListAllSubdivisions(Guid countryId)
         {
             return await _context.Subdivisions.Where(s => s.CountryId == countryId).ToListAsync();
+        }
+
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<CountryEntity>> SearchCountriesByIds(IEnumerable<Guid> ids)
+        {
+            return await _context.Countries.Where(c => ids.Contains(c.Id)).ToListAsync(); //where c.Id IN (ids)
+        }
+        
+        /// <inheritdoc />
+        public async Task<IEnumerable<CountrySubdivisionEntity>> SearchSubdivisionsByIds(Guid countryId, IEnumerable<Guid> subIds)
+        {
+            return await _context.Subdivisions.Where(s => s.CountryId == countryId).Where(s => subIds.Contains(s.Id)).ToListAsync(); //where s.Id IN (ids)
         }
 
 
