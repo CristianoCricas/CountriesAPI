@@ -19,15 +19,8 @@ namespace CountriesAPI
             builder.Services.AddSwaggerGen();
 
 
-/////////////////
             // Configure PostgreSQL
-            builder.Services.AddEntityFrameworkNpgsql()
-                .AddDbContext<DbCountriesContext>(op => op.UseNpgsql(builder.Configuration.GetConnectionString("DataBase")));
-
-
-            builder.Services.AddScoped<ICountryRepository, CountryRepository>();
-
-////////////////
+            ConfigureDataBaseAndScopes(builder);
 
             var app = builder.Build();
 
@@ -47,6 +40,19 @@ namespace CountriesAPI
             app.MapControllers();
 
             app.Run();
+        }
+
+
+        /// <summary>
+        /// Configure DataBase Connection and it's scope (the dependecys)
+        /// </summary>
+        /// <param name="builder"></param>
+        private static void ConfigureDataBaseAndScopes(WebApplicationBuilder builder)
+        {
+            builder.Services.AddEntityFrameworkNpgsql()
+                .AddDbContext<DbCountriesContext>(op => op.UseNpgsql(builder.Configuration.GetConnectionString("DataBase")));
+
+            builder.Services.AddScoped<ICountryRepository, CountryRepository>();
         }
     }
 }

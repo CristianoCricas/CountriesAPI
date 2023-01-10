@@ -22,7 +22,6 @@
         /// <summary>
         /// Return if this Entity is Inserting (when ID is empty):
         /// </summary>
-        /// <param name="newEntity"></param>
         public bool IsInserting()
         {
 

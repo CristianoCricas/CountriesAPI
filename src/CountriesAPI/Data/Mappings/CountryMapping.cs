@@ -38,10 +38,16 @@ namespace CountriesAPI.Data.Map
             builder.Property(x => x.Independent)
                 .IsRequired();
 
+
+            #region CHILDS
+            builder.HasMany(x => x.Subdivisions)
+                .WithOne()
+                .HasForeignKey(x => x.CountryId);
+
+            #endregion
+
             #region IGNORED FIELDS
             builder.Ignore(x => x.IsoCode);
-
-
             #endregion
         }
     }

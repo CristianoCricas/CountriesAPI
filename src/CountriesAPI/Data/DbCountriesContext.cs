@@ -6,6 +6,10 @@ namespace CountriesAPI.Data
 {
     public class DbCountriesContext : DbContext
     {
+        public DbSet<CountryEntity> Countries { get; set; }
+        public DbSet<CountrySubdivisionEntity> Subdivisions { get; set; }
+
+
         /// <summary>
         /// Starts the DataBase Context
         /// </summary>
@@ -15,9 +19,6 @@ namespace CountriesAPI.Data
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
-
-
-        public DbSet<CountryEntity> Countries { get; set; }
 
         /// <summary>
         /// Used to modeling Domain Entities to EntityFramework

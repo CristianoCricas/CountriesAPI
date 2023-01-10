@@ -26,6 +26,7 @@ namespace CountriesAPI.Domain.Entities
         public bool Independent { get; set; }
 
 
+        //This field is virtual (don't need to persist with EntityFramework)
         public string IsoCode
         {
             get
@@ -36,6 +37,12 @@ namespace CountriesAPI.Domain.Entities
                 return string.Empty;
             }
         }
+        #endregion
+
+
+        #region CHILDS
+        public IEnumerable<CountrySubdivisionEntity>? Subdivisions { get; set; }
+
         #endregion
 
 
