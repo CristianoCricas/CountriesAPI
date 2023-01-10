@@ -17,7 +17,7 @@ namespace CountriesAPI.Controllers
 
 
         /// <summary>
-        /// Default API exposed action to Select ALL Countries on DataBase by it's ID
+        /// Default API exposed action to Select ALL Countries on DataBase
         /// </summary>
         /// <returns>JSON with ALL Countries on DataBase</returns>
         [HttpGet]
@@ -29,7 +29,20 @@ namespace CountriesAPI.Controllers
         }
 
         /// <summary>
-        /// Exposed API action to Select one Country on DataBase by it's ID
+        /// API exposed action to show Total Countries on DataBase
+        /// </summary>
+        /// <returns>Total obtained countries</returns>
+        [HttpGet("total")]
+        public async Task<IActionResult> TotalCountries()
+        {
+            IEnumerable<CountryEntity> countries = await _countryRepository.ListAll();
+            var total = countries.Count();
+
+            return Ok($"Total obtained countries: {total}"); //200 OK
+        }
+
+        /// <summary>
+        /// API exposed action to Select one Country on DataBase by it's ID
         /// </summary>
         /// <param name="id">ID of the Country that will be selected</param>
         /// <returns>JSON with Country on DataBase</returns>
@@ -96,7 +109,7 @@ namespace CountriesAPI.Controllers
 
 
         /// <summary>
-        /// Default API exposed action to Select ALL Subdivisions of a Country on DataBase by it's ID
+        /// API exposed action to Select ALL Subdivisions of a Country on DataBase
         /// </summary>
         /// <param name="countryId">Country ID of the  Subdivisiosn </param>
         /// <returns>JSON with ALL Subdivisions of a Countries on DataBase</returns>
@@ -109,7 +122,24 @@ namespace CountriesAPI.Controllers
         }
 
         /// <summary>
-        /// Exposed API action to Select one Subdivision of Country on DataBase by it's ID
+        /// API exposed action to show Total Subdivisions of Countries on DataBase
+        /// </summary>
+        /// <returns>Total obtained country subdivisions</returns>
+        [HttpGet("{countryId}/subdivisions/total")]
+        public async Task<IActionResult> TotalCountrySubdivisions([FromRoute] Guid countryId)
+        {
+            IEnumerable<CountrySubdivisionEntity> subdivisions = await _countryRepository.ListAllSubdivisions(countryId);
+            var total = subdivisions.Count();
+            var selectedCountry = await _countryRepository.SelectById(countryId);
+
+            if (selectedCountry == null)
+                return NotFound($"Country ID: {countryId}"); //404 Not Found
+
+            return Ok($"Total obtained subdivisions of {selectedCountry.Name}: {total}"); //200 OK
+        }
+
+        /// <summary>
+        /// API exposed action to Select one Subdivision of Country on DataBase by it's ID
         /// </summary>
         /// <param name="countryId">Country ID of the  Subdivisiosn </param>
         /// <param name="subId">ID of the Subdivision of Country that will be selected</param>
