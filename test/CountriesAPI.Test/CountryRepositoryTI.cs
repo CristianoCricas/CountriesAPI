@@ -1,7 +1,6 @@
 using CountriesAPI.Data;
 using CountriesAPI.Data.Repositories;
 using CountriesAPI.Domain.Entities;
-using System.Diagnostics.Metrics;
 
 namespace CountriesAPI.Test
 {

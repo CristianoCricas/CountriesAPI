@@ -1,6 +1,5 @@
 ﻿using CountriesAPI.Domain.Entities;
 using CountriesAPI.Domain.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CountriesAPI.Data.Repositories

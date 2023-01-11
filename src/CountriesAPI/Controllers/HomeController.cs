@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using static System.Net.WebRequestMethods;
 
 namespace CountriesAPI.Controllers
 {
