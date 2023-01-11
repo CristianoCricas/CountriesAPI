@@ -214,7 +214,7 @@ namespace CountriesAPI.Controllers
         /// <param name="subId">ID of the Subdivision of Country that will be updated</param>
         /// <param name="edtSubdivision">JSON with Subdivision informations (REQUIRED: Name, Category, SubCode )</param>
         /// <returns>204 No Content</returns>
-        [HttpPut("{countryId}/subdivisions/{id}")] //HTTP PUT {subId} - Update for given Id
+        [HttpPut("{countryId}/subdivisions/{subId}")] //HTTP PUT {subId} - Update for given Id
         public async Task<IActionResult> UpdateSubdivision([FromRoute] Guid countryId, Guid subId, [FromBody] CountrySubdivisionEntity edtSubdivision)
         {
             edtSubdivision.Id = subId;
