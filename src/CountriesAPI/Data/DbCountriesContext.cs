@@ -13,12 +13,12 @@ namespace CountriesAPI.Data
         /// <summary>
         /// Starts the DataBase Context
         /// </summary>
-        /// <param name="modelBuilder"></param>
-        public DbCountriesContext(DbContextOptions<DbCountriesContext> options)
-            : base(options) 
+        public DbCountriesContext(DbContextOptions options)
+            : base(options)
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
+
 
         /// <summary>
         /// Used to modeling Domain Entities to EntityFramework
