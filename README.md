@@ -42,12 +42,11 @@
 **1.1.** If don't have it, I recomend Community version: https://visualstudio.microsoft.com/vs/community
 
 **1.2.** Must have, at least, **ASP.NET web development** (all recommended packages on the first instalacion such as .NET 6.0, .NET SDK, etc)
+![example_install01](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install01.png?raw=true)
 
-> [example_install01]
 
 **1.3.** Plus: install GIT for Windows (on Individual Components)
-
-> [example_install02]
+![example_install02](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install02.png?raw=true)
 
 
 ### 2. Install and configure docker compose 
@@ -66,8 +65,7 @@
 ````
 
 **WARNING:** it may show a confirmation dialogue. Click ``YES`` to create the **Dev trusted certificate**. It'll be created in the ``/src`` directory (**needed** for Docker Compose to use it later.)
-
-> [example_install03]
+![example_install03](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install03.png?raw=true)
 
 **4.2.** After configure and start Docker, build and start API container:
 
@@ -77,7 +75,7 @@ docker-compose build
 ````
 docker-compose up
 ````
-> [example_install04]
+![example_install04](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install04.png?raw=true)
 
 **TIP:** before run ``docker-compose up``, you can change the **PORTS** of API, PostgreSQL and Adminer.
 On the root folder is the ``.env`` file where you can change the Environment variables used to set apps Ports.
@@ -88,7 +86,8 @@ DOCKER_API_PORT=9443
 DOCKER_POSTGRES_PORT=5432
 DOCKER_ADMINER_PORT=9080
 ````
-> [example_install05]
+![example_install05](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install05.png?raw=true)
+
 
 ### 5. Confirm if the container is OK, running the command:
 ````
@@ -99,8 +98,7 @@ docker container ls
 - adminer
 - countriesapi
 - postgres
-
-> [example_install06]
+![example_install06](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install06.png?raw=true)
 
 **5.2.** When using **Docker Desktop**, te containers will be visible at "Containers" section
 
@@ -110,8 +108,7 @@ docker container ls
 **6.1.** Access https://localhost:9443 to see the Homepage of CountriesAPI (or other PORT, if you change ``DOCKER_API_PORT`` previously)
 
 **6.2.** You can go straigh to https://localhost:9443/swagger to see API auto-documentation genereted by **swagger**.
-
-> [example_install07]
+![example_install07](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install07.png?raw=true)
 
 
 ### 7. Checking sample data
@@ -126,10 +123,8 @@ Database: countries_db
 ````
 
 **NOTICE:** Adminer is on a docker container. So, the server will be the name of the container where PostgreSQL is, in this case ``postgres``. For other DBMSs installed on your PC, the server will be ``localhost``
-
-> [example_install08]
-
-> [example_install09]
+![example_install08](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install08.png?raw=true)
+![example_install09](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install09.png?raw=true)
 
 
 ## RUNNING AUTOMATED TESTS
@@ -137,14 +132,13 @@ Database: countries_db
 1. After **building by docker**, it is usually already possible to run the project in Visual Studio. Also, the ***postgres container is necessary to run the TIs*** (Tests of Integration).
 
 2. Access the **"Test Explorer"** on Visual Studio and run the Tests.
-
- > [example_tests01]
+![example_tests01](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_tests01.png?raw=true)
 
 3. Other way of Run the tests is open ``Powershell`` on the project's root folder and run the command script:
 ````
 .\RunXUnitTests.ps1
 ````
-> [example_tests02]
+![example_tests02](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_tests02.png?raw=true)
 
 
 # USING API
@@ -162,9 +156,7 @@ The 2 items below describes how to use the **"CRUD"** os this API
 - The JSON must have: ``name, alpha2code, alpha3code, numericcode, independent``
 
 After send Request, the response will have the **Country Properties and it's ID that was generated.**
-
-> [example_postman01]
-
+![example_postman01](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman01.png?raw=true)
 
 
 ### 1.2. Register a country subdivision
@@ -173,8 +165,7 @@ After send Request, the response will have the **Country Properties and it's ID 
 - And the JSON must have: ``name, category, subcode``
 
 The response will have the **Subdivision Properties and it's ID that was generated.**
-
-> [example_postman02]
+![example_postman02](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman02.png?raw=true)
 
 
 ### 1.3. Update a countrys information
@@ -183,8 +174,7 @@ The response will have the **Subdivision Properties and it's ID that was generat
 - The JSON must have: ``name, alpha2code, alpha3code, numericcode, independent``
 
 After  send Request, the response will be **204 "No content".**
-
-> [example_postman03]
+![example_postman03](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman03.png?raw=true)
 
 
 ### 1.4. Update a country subdivisions information
@@ -194,8 +184,7 @@ After  send Request, the response will be **204 "No content".**
 - And the JSON must have: ``name, category, subcode``
 
 After  send Request, the response will be **204 "No content".**
-
-> [example_postman04]
+![example_postman04](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman04.png?raw=true)
 
 
 ### 1.5. Delete a country
@@ -205,8 +194,7 @@ After  send Request, the response will be **204 "No content".**
 After send Request, the response will be **204 "No content".**
 
 **WARNING:** when delete a Country, all of it's Subdivisions WILL BE DELETED too!
-
-> [example_postman05]
+![example_postman05](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman05.png?raw=true)
 
 
 ### 1.6. Delete a country subdivision
@@ -215,8 +203,7 @@ After send Request, the response will be **204 "No content".**
 - The ``id`` param must have the **Subdivision ID that will be DELETED*.*
 
 After send Request, the response will be **204 "No content".**
-
-> [example_postman06]
+![example_postman06](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman06.png?raw=true)
 
 
 ## 2. Other functions (C - Consult and searches) 
@@ -233,8 +220,7 @@ After send Request, the response will be **204 "No content".**
 ````
 
 After send Request, the response will **list the Countries according to IDs.**
-
-> [example_postman07]
+![example_postman07](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman07.png?raw=true)
 
 
 ### 2.2. Filter by Name and AlphaCode
@@ -245,16 +231,14 @@ After send Request, the response will **list the Countries according to IDs.**
 After send Request, the response will list the Countries according to the filters.
 
 **TIP:** if there is no query string, the API will **list all countries on Database.**
-
-> [example_postman08]
+![example_postman08](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman08.png?raw=true)
 
 
 ### 2.3. Totalize the amount of obtained countries
 - Use ``HTTP GET`` on https://localhost:9443/api/countries/total
 
 The response will list the **TOTAL of Countries on Database.**
-
-> [example_postman09]
+![example_postman09](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman09.png?raw=true)
 
 
 ### 2.4. Consult the information of a country subdivision
@@ -265,8 +249,7 @@ The response will list the **TOTAL of Countries on Database.**
 The response will show the **Subdivision properties of the Country.**
 
 **TIP:** if there is no ID for subdivisions, the API will list all subdivisions of the current Country.
-
-> [example_postman10]
+![example_postman10](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman10.png?raw=true)
 
 
 ### 2.5. List of multiple subdivisions of a country 
@@ -283,8 +266,7 @@ The response will show the **Subdivision properties of the Country.**
 ````
 
 The response will **list the Subdivisions of Country according to IDs.**
-
-> [example_postman11]
+![example_postman11](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman11.png?raw=true)
 
 
 ### 2.6. Totalize the amount of obtained country subdivisions 
@@ -293,5 +275,5 @@ Use ``HTTP GET`` on https://localhost:9443/api/countries/{countryId}/subdivision
 The ``countryId`` param must have the **Country ID of the subdivision.**
 
 The response will list the **TOTAL of the Country Subdivisions.**
+![example_postman12](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman12.png?raw=true)
 
-> [example_postman12]
