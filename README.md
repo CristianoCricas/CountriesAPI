@@ -29,6 +29,9 @@
 - List of multiple subdivisions of a country
 - Totalize the amount of obtained country subdivisions
 
+## Issues
+- [Known issues](https://github.com/CristianoCricas/CountriesAPI/issues/1)
+
 
 # REQUIRED APPS
 * [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/)
