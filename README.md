@@ -5,7 +5,7 @@
 
 
 ## ABOUT
-> **[It's works like a simple Country ISO 3166-1 Cad/Search](https://en.wikipedia.org/wiki/ISO_3166-1)**
+> **[It's works like a simple Country ISO 3166-1 Application](https://en.wikipedia.org/wiki/ISO_3166-1)**
 
 
 ## Architecture
@@ -29,8 +29,10 @@
 - List of multiple subdivisions of a country
 - Totalize the amount of obtained country subdivisions
 
-## Issues
+
+## Issues and Improvements
 - [Known issues](https://github.com/CristianoCricas/CountriesAPI/issues/1)
+- [Necessary improvements](https://github.com/CristianoCricas/CountriesAPI/issues/2)
 
 
 # REQUIRED APPS
