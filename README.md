@@ -41,11 +41,11 @@
 ### 1. Install Visual Studio
 **1.1.** If don't have it, I recomend Community version: https://visualstudio.microsoft.com/vs/community
 
-**1.2.** Must have, at least, **ASP.NET web development** (all recommended packages on the first instalacion such as .NET 6.0, .NET SDK, etc)
+**1.2.** Must have, at least, **ASP.NET web development** (all recommended packages of the first installation such as .NET 6.0, .NET SDK, etc)
 ![example_install01](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install01.png?raw=true)
 
 
-**1.3.** Plus: install GIT for Windows (on Individual Components)
+**1.3. Plus:** install GIT for Windows (on Individual Components)
 ![example_install02](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install02.png?raw=true)
 
 
@@ -56,7 +56,7 @@
 ### 3. Clone the repository on Visual Studio
 
 
-### 4. Open ``Powershell`` on the project's root folder (or use *Command Windows* on Visual Studio), and run the commands below:
+### 4. After clone, open ``Powershell`` on the project's root folder (or use *Command Windows* on Visual Studio), and run the commands below:
 
 **4.1.** Script to create a Dev Certificate to HTTPS works
 
@@ -89,18 +89,19 @@ DOCKER_ADMINER_PORT=9080
 ![example_install05](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install05.png?raw=true)
 
 
-### 5. Confirm if the container is OK, running the command:
+### 5. Confirm if the container is OK, with the command:
 ````
 docker container ls
 ````
 
 **5.1.** - if it's OK, will show the containers:
-- adminer
-- countriesapi
-- postgres
+- **adminer**
+- **countriesapi**
+- **postgres**
+
 ![example_install06](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_install06.png?raw=true)
 
-**5.2.** When using **Docker Desktop**, te containers will be visible at "Containers" section
+**5.2.** When using **Docker Desktop**, te containers will be visible at **"Containers"** section.
 
 
 ### 6. Testing local access to CountriesAPI
@@ -113,9 +114,8 @@ docker container ls
 
 ### 7. Checking sample data
 
-**7.1** Access **Adminer** through https://localhost:9080 to view the **SAMPLE data created** with ``docker-compose up``
+**7.1** Access **Adminer** through https://localhost:9080 to view the **SAMPLE data** created with ``docker-compose up``, use the following credentials:
 ````
-Credentials:
 Server: postgres
 User: postgres
 Pass: Cric@s
@@ -149,7 +149,7 @@ One way for use the API is tests it's functions via **Swagger**, where all the m
 The 2 items below describes how to use the **"CRUD"** os this API
 
 
-## 1. Operations (RUD: Register, Update, Delete)
+## 1. Operations (CUD: Create, Update, Delete)
 
 ### 1.1. Register a country (name, alpha code, numeric code, etc)
 - Use ``HTTP POST`` on https://localhost:9443/api/countries
@@ -168,7 +168,7 @@ The response will have the **Subdivision Properties and it's ID that was generat
 ![example_postman02](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman02.png?raw=true)
 
 
-### 1.3. Update a countrys information
+### 1.3. Update a country information
 - Use ``HTTP PUT`` on https://localhost:9443/api/countries/{id}
 - The ``id`` param must have the **Country ID that will be Updated.**
 - The JSON must have: ``name, alpha2code, alpha3code, numericcode, independent``
@@ -200,17 +200,18 @@ After send Request, the response will be **204 "No content".**
 ### 1.6. Delete a country subdivision
 - Use ``HTTP DELETE`` on https://localhost:9443/api/countries/{countryId}/subdivisions/{id}
 - The ``countryId`` param must have the **Country ID of the subdivision.**
-- The ``id`` param must have the **Subdivision ID that will be DELETED*.*
+- The ``id`` param must have the **Subdivision ID that will be DELETED.**
 
 After send Request, the response will be **204 "No content".**
 ![example_postman06](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman06.png?raw=true)
 
 
-## 2. Other functions (C - Consult and searches) 
+## 2. Querying data (R: Read and searches) 
 
 ### 2.1. List multiple countries
 - Use ``HTTP POST`` on https://localhost:9443/api/countries/search
-- The JSON must have: **list of Country IDs**, in a simple StringList. Example:
+- The JSON must have: **list of Country IDs**, in a simple StringList. 
+- Example:
 ````
 [
     "419c1c15-240f-458f-8cc7-f1e54016b6be",
@@ -255,17 +256,18 @@ The response will show the **Subdivision properties of the Country.**
 ### 2.5. List of multiple subdivisions of a country 
 - Use ``HTTP POST`` on https://localhost:9443/api/countries/{countryId}/subdivisions/search
 - The ``countryId`` param must have the **Country ID of the subdivision.**
-- And, like item **2.1**, the JSON must have: **list of Subdivisions IDs**, in a simple StringList. Example:
+- And, like item **2.1**, the JSON must have: **list of Subdivisions IDs**, in a simple StringList. 
+- Example:
 ````
 [
     "543285f0-6e35-4499-96a0-b224c8b757e6",
     "6f9e41ba-7b53-4cc0-8b95-4b7082976385",
     "ddef3e84-556a-4c10-96e1-51ce3194cf1c",
-	"366335a7-bdf5-488c-a137-0af4de78cc45"
+    "366335a7-bdf5-488c-a137-0af4de78cc45"
 ]
 ````
 
-The response will **list the Subdivisions of Country according to IDs.**
+The response will **list the Subdivisions of a Country according to IDs.**
 ![example_postman11](https://github.com/CristianoCricas/CountriesAPI/blob/main/imgs/example_postman11.png?raw=true)
 
 
